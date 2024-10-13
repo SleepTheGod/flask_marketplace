@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Marketplace</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('main.index') }}">Home</a>
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('main.sell') }}">Sell Product</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('auth.login') }}">Login</a>
+            <a href="{{ url_for('auth.register') }}">Register</a>
+        {% endif %}
+    </nav>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

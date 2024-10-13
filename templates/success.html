@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Payment Successful!</h1>
+    <p>You can download your product here: <a href="{{ product.download_link }}">{{ product.download_link }}</a></p>
+{% endblock %}

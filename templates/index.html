@@ -1,26 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Marketplace</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <nav>
-        <a href="{{ url_for('main.index') }}">Home</a>
-        {% if current_user.is_authenticated %}
-            <a href="{{ url_for('main.sell') }}">Sell Product</a>
-            <a href="{{ url_for('auth.logout') }}">Logout</a>
-        {% else %}
-            <a href="{{ url_for('auth.login') }}">Login</a>
-            <a href="{{ url_for('auth.register') }}">Register</a>
-        {% endif %}
-    </nav>
+{% extends 'base.html' %}
 
-    <div class="content">
-        {% block content %}
-        {% endblock %}
+{% block content %}
+    <h1>Welcome to the Code Marketplace</h1>
+    <div class="product-list">
+        {% for product in products %}
+            <div class="product">
+                <h3>{{ product.title }}</h3>
+                <p>{{ product.description }}</p>
+                <p>Price: {{ product.price }} BTC</p>
+                <a href="{{ url_for('main.product', product_id=product.id) }}">View Product</a>
+            </div>
+        {% endfor %}
     </div>
-</body>
-</html>
+{% endblock %}
